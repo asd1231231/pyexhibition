@@ -11,6 +11,8 @@
 """
 # Python standard library module
 import asyncio
+import sys
+from pathlib import Path
 # Python third party module
 try:
     import uvloop
@@ -18,7 +20,8 @@ try:
 except ImportError:
     pass
 # Application custom module
-from exhibition.__main__ import run
+sys.path.append(Path(__file__).absolute().parent.parent)
+from app import run
 _loop = asyncio.get_event_loop()
 asyncio.ensure_future(run())
 _loop.run_forever()
